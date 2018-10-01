@@ -14,7 +14,7 @@ class DataSet:
         self.split = False
         self.encoded = False
 
-        """   Encode Features   """
+        # Encode Features
         if label_encode == "auto":
             print("Auto Encoding Selected")
             label_encode = []
@@ -28,14 +28,14 @@ class DataSet:
         elif type(label_encode) is list:
             self.encode(label_encode)
 
-        """   Scale Features   """
+        # Scale Features
         if scaling:
             from sklearn.preprocessing import StandardScaler
             self.scaled = True
             sc = StandardScaler()
             self.X = sc.fit_transform(self.X)
 
-        """   Train Split Features   """
+        # Train Test Split
         if train:
             self.create_training_set(train)
 
@@ -43,9 +43,7 @@ class DataSet:
             self.X = self.X.astype(dtype)
         elif dtype == np.float32:
             self.X = self.X.astype(dtype)
-
-    """     FUNCTIONS       """
-
+            
     def encode(self, labels):
         from sklearn.preprocessing import LabelEncoder, OneHotEncoder
         print("Encoding Now")
@@ -61,8 +59,6 @@ class DataSet:
         self.split = True
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=train_split)
 
-
-"""   USEFUL COMMANDS   """
 
 
 class Models:
